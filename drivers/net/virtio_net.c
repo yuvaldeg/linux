@@ -2115,6 +2115,9 @@ static void virtnet_init_settings(struct net_device *dev)
 
 	vi->speed = SPEED_UNKNOWN;
 	vi->duplex = DUPLEX_UNKNOWN;
+
+	/* Enforce VIRTIO_NET_F_STANDBY=true until it is exposed through QEMU */
+	__virtio_set_bit(vi->vdev, VIRTIO_NET_F_STANDBY);
 }
 
 static void virtnet_update_settings(struct virtnet_info *vi)
